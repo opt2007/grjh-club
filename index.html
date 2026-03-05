@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歸仁國中 | 社團選填管理系統 V24</title>
+    <title>歸仁國中 | 社團選填管理系統 V25</title>
     <!-- 引用穩定 CDN 資源 -->
     <script src="https://cdn.tailwindcss.com/"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -26,7 +26,8 @@
                 <span class="text-3xl">🏛️</span>
                 <div class="flex flex-col text-left">
                     <h1 class="font-black text-lg tracking-tight leading-none text-white">台南市立歸仁國中</h1>
-                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mt-1">Student Selection System V24.0</span>
+                    <!-- 版本號已更新為 V25.0 以供識別 -->
+                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mt-1">Student Selection System V25.0</span>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -45,8 +46,8 @@
 
         <!-- 視圖: 大廳 -->
         <section id="view-gateway" class="hidden fade-in py-16 text-center">
-            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter italic">社團志願選填系統</h2>
-            <p class="text-slate-500 mb-12 text-lg">穩定 · 專業 · 快速</p>
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter italic text-center">社團志願選填系統</h2>
+            <p class="text-slate-500 mb-12 text-lg text-center">穩定 · 專業 · 快速</p>
             <div class="flex flex-col md:flex-row justify-center gap-6">
                 <button onclick="app.setView('login')" class="px-10 py-5 bg-blue-600 text-white rounded-3xl font-black text-xl shadow-xl hover:bg-blue-700 transition transform active:scale-95">點此進入選填</button>
                 <button class="px-10 py-5 bg-white border-2 border-slate-200 text-slate-300 rounded-3xl font-black text-xl cursor-not-allowed">公告查詢頁 (即將開放)</button>
@@ -54,10 +55,10 @@
         </section>
 
         <!-- 視圖: 登入 -->
-        <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12 text-left">
+        <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12 text-left text-left">
             <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
-                <div class="text-5xl mb-6">🔐</div>
-                <h2 class="text-2xl font-black mb-8 text-slate-800 italic underline decoration-blue-500 underline-offset-8">學生身分驗證</h2>
+                <div class="text-5xl mb-6 text-center text-center">🔐</div>
+                <h2 class="text-2xl font-black mb-8 text-slate-800 italic underline decoration-blue-500 underline-offset-8 text-center text-center">學生身分驗證</h2>
                 <form id="login-form" class="space-y-6 text-left" onsubmit="app.handleLogin(event)">
                     <div>
                         <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">學號 (帳號)</label>
@@ -82,7 +83,7 @@
         <section id="view-selection" class="hidden fade-in text-left">
             <div class="flex justify-between items-end mb-8 text-left">
                 <div class="text-left">
-                    <h2 class="text-3xl font-black text-slate-900 tracking-tighter italic">我的志願排序</h2>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tighter italic text-left text-left">我的志願排序</h2>
                     <p id="grade-label" class="mt-2 bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-black inline-block"></p>
                 </div>
                 <button onclick="app.logout()" class="text-slate-400 hover:text-red-500 underline text-xs font-bold transition-colors">登出</button>
@@ -98,8 +99,9 @@
             <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner text-center">✓</div>
             <h2 class="text-3xl font-black text-slate-900 mb-10 italic">志願已正式鎖定</h2>
             <div class="bg-white p-10 rounded-[3rem] shadow-2xl border-t-8 border-emerald-500 text-left">
-                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic"></h4>
-                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left"></ul>
+                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left text-left"></h4>
+                <p class="text-[10px] text-slate-400 font-black uppercase mb-4 tracking-widest text-left">我的志願前五名：</p>
+                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left text-left"></ul>
                 <button onclick="window.print()" class="mt-10 w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl no-print text-center">🖨️ 列印/儲存存證單 PDF</button>
             </div>
             <button onclick="app.logout()" class="mt-10 px-8 py-3 border rounded-xl text-slate-400 font-bold text-xs hover:bg-slate-100 transition">登出</button>
@@ -113,36 +115,36 @@
             </div>
 
             <div class="flex bg-slate-100 p-1.5 rounded-2xl mb-10 gap-2 max-w-lg shadow-inner border text-left">
-                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center">1. 學生資料查詢</button>
-                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">2. 智慧資料匯入</button>
-                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">3. 選填報表</button>
+                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center">1. 學生個資查詢</button>
+                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">2. 資料同步匯入</button>
+                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">3. 選填報表下載</button>
             </div>
 
             <!-- 後台分頁: 資料查詢 -->
             <div id="panel-lookup" class="space-y-6 text-left">
-                <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-blue-50 flex items-center gap-4">
+                <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-blue-50 flex items-center gap-4 text-left">
                     <i data-lucide="search" class="text-slate-300"></i>
                     <input type="text" id="search-lookup" oninput="admin.renderLookup()" class="flex-grow p-2 outline-none font-bold text-lg text-slate-700" placeholder="快速搜尋姓名或學號...">
                 </div>
                 <div class="bg-white rounded-[2rem] border shadow-sm overflow-hidden text-left text-left">
                     <table class="w-full text-left">
-                        <thead class="bg-slate-50 border-b text-[10px] font-black text-slate-400 tracking-widest text-left">
-                            <tr><th class="p-5 text-left">學號</th><th class="p-5 text-left">姓名</th><th class="p-5 text-left text-blue-600 bg-blue-50/50">末四碼</th><th class="p-5 text-blue-600 text-left bg-blue-50/50">生日</th></tr>
+                        <thead class="bg-slate-50 border-b text-[10px] font-black text-slate-400 tracking-widest text-left text-left">
+                            <tr><th class="p-5 text-left">學號</th><th class="p-5 text-left">姓名</th><th class="p-5 text-left text-blue-600 bg-blue-50/50 text-left text-left">末四碼</th><th class="p-5 text-blue-600 text-left bg-blue-50/50 text-left text-left">生日</th></tr>
                         </thead>
                         <tbody id="admin-lookup-body" class="divide-y text-sm font-medium text-left"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- 後台分頁: 匯入 (V24 核心加強) -->
-            <div id="panel-import" class="hidden space-y-8 text-left text-left">
+            <!-- 後台分頁: 匯入 (V25 終極修復) -->
+            <div id="panel-import" class="hidden space-y-8 text-left text-left text-left text-left">
                 <div class="bg-white p-8 rounded-[3rem] border border-blue-100 shadow-xl text-left">
-                    <h3 class="font-black text-blue-700 mb-2 italic flex items-center gap-2 text-left underline decoration-blue-200">📥 資料同步引擎 (V24)</h3>
-                    <p class="text-xs text-slate-400 mb-6 text-left font-bold">⚠️ V24 超級解析功能已啟用：系統會自動清洗資料，並轉換全形引號為半形。</p>
+                    <h3 class="font-black text-blue-700 mb-2 italic flex items-center gap-2 text-left underline decoration-blue-200 text-left text-left">📥 資料同步引擎 (V25 修復版)</h3>
+                    <p class="text-xs text-slate-400 mb-6 text-left font-bold">⚠️ V25 修復機制：系統現在會徹底過濾隱形字元。如果貼上時報錯，請嘗試將 JSON 內容分批貼上。</p>
                     
                     <div class="flex gap-3 mb-6">
-                        <button onclick="admin.setTarget('students')" id="target-students" class="px-6 py-2 rounded-full text-xs font-black bg-blue-600 text-white transition-all shadow-md">同步學生驗證庫</button>
-                        <button onclick="admin.setTarget('clubs')" id="target-clubs" class="px-6 py-2 rounded-full text-xs font-black bg-slate-100 text-slate-400 transition-all">同步該年級社團</button>
+                        <button onclick="admin.setTarget('students')" id="target-students" class="px-6 py-2 rounded-full text-xs font-black bg-blue-600 text-white transition-all shadow-md">同步全校學生名單</button>
+                        <button onclick="admin.setTarget('clubs')" id="target-clubs" class="px-6 py-2 rounded-full text-xs font-black bg-slate-100 text-slate-400 transition-all">同步分級社團名單</button>
                     </div>
 
                     <div id="import-clubs-options" class="hidden mb-6 flex gap-4 text-left">
@@ -151,43 +153,42 @@
                         </select>
                     </div>
 
-                    <textarea id="import-area" class="w-full h-64 p-5 bg-slate-900 text-emerald-400 font-mono text-xs rounded-[2rem] outline-none shadow-inner border-4 border-slate-800" placeholder="直接在此貼上 JSON 陣列內容..."></textarea>
-                    <button onclick="admin.doImport()" class="mt-8 w-full bg-blue-600 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 text-lg">一鍵同步雲端</button>
+                    <textarea id="import-area" class="w-full h-64 p-5 bg-slate-900 text-emerald-400 font-mono text-xs rounded-[2rem] outline-none shadow-inner border-4 border-slate-800" placeholder="請在此貼上 JSON 代碼內容..."></textarea>
+                    <button id="import-submit-btn" onclick="admin.doImport()" class="mt-8 w-full bg-blue-600 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 text-lg">確認同步至雲端</button>
                 </div>
             </div>
 
             <!-- 後台分頁: 報表 -->
             <div id="panel-report" class="hidden text-center text-left text-left">
                 <div class="bg-white p-10 rounded-[3rem] border shadow-sm text-center">
-                    <h3 class="text-xl font-black mb-6">正式分發報表匯出</h3>
-                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition text-lg mx-auto block">下載 CSV (Excel) 總表</button>
+                    <h3 class="text-xl font-black mb-6 text-center text-center text-center text-center">全校志願選填總表</h3>
+                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition text-lg mx-auto block text-center">下載分發用 CSV 檔案</button>
                     <div class="mt-8 text-xs text-slate-400 italic font-bold">雲端收件統計：<span id="sub-count">0</span></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 密碼驗證 Modal (穩定版 ID) -->
-    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop">
+    <!-- 密碼驗證 Modal -->
+    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop text-left">
         <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm fade-in text-center text-left">
-            <h3 class="text-xl font-black mb-4 text-slate-800">管理員驗證</h3>
-            <input type="password" id="admin-pwd-input" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-6 shadow-inner text-slate-700" placeholder="輸入後台密碼">
-            <div class="flex gap-3 text-center"><button onclick="app.closeAdminModal()" class="flex-1 py-3 text-slate-400 font-bold transition rounded-xl text-center hover:bg-slate-100">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-3 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center">進入</button></div>
+            <h3 class="text-xl font-black mb-4 text-slate-800 text-center">管理員驗證</h3>
+            <input type="password" id="admin-pwd-input" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-6 shadow-inner text-slate-700 text-center text-center" placeholder="輸入後台密碼">
+            <div class="flex gap-3 text-center text-center text-center text-center text-center"><button onclick="app.closeAdminModal()" class="flex-1 py-3 text-slate-400 font-bold transition rounded-xl text-center text-center">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-3 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center text-center">進入</button></div>
         </div>
     </div>
 
-    <!-- 送出確認 Modal -->
+    <!-- 確認送出 Modal -->
     <div id="modal-confirm" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-backdrop text-center text-left">
         <div class="bg-white rounded-[3.5rem] shadow-2xl p-10 w-full max-w-sm border-t-8 border-emerald-500 text-center text-left">
-            <div class="text-5xl mb-6 text-center">⚠️</div>
-            <h3 class="text-2xl font-black mb-4 tracking-tight text-center text-slate-900 italic">確定要送出鎖定？</h3>
-            <p class="text-red-600 font-black mb-10 text-sm leading-relaxed italic text-center text-left">一經提交後，系統將正式記錄志願且無法再行修改。請確認目前的排序正確無誤。</p>
-            <div class="flex gap-4 text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-4 text-slate-400 font-bold border rounded-2xl text-center text-left hover:bg-slate-50">返回檢查</button><button onclick="app.savePrefs()" class="flex-1 py-4 bg-[#10b981] text-white rounded-2xl font-black shadow-lg text-center text-left">確定送出</button></div>
+            <div class="text-5xl mb-6 text-center text-center text-center text-center">⚠️</div>
+            <h3 class="text-2xl font-black mb-4 tracking-tight text-center text-slate-900 italic text-center">確定鎖定志願？</h3>
+            <p class="text-red-600 font-black mb-10 text-sm leading-relaxed italic text-center text-left text-left text-left text-left">一經提交後，系統將正式記錄志願且無法再行修改。請確認目前的排序正確無誤。</p>
+            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center text-center text-center text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-4 text-slate-400 font-bold border rounded-2xl text-center text-left text-left text-left hover:bg-slate-50">返回檢查</button><button onclick="app.savePrefs()" class="flex-1 py-4 bg-[#10b981] text-white rounded-2xl font-black shadow-lg text-center text-left text-left text-left text-left">確定送出</button></div>
         </div>
     </div>
 
-    <!-- Toast 訊息通知 -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all z-[200] px-8 py-4 rounded-2xl shadow-2xl text-white font-black flex items-center gap-3 text-sm text-center duration-500"></div>
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all z-[200] px-8 py-4 rounded-2xl shadow-2xl text-white font-black flex items-center gap-3 text-sm text-center text-center text-center text-center text-center text-center text-center text-center text-center duration-500"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
@@ -203,7 +204,7 @@
             appId: "1:658160832309:web:afd49ad3ccb898494e467c",
             measurementId: "G-6SF75LGMKS"
         };
-        const appId = 'grjh-v24-final-stable'; 
+        const appId = 'grjh-v25-verified-final'; 
         const ADMIN_PWD = 'admin123';
 
         const firebaseApp = initializeApp(firebaseConfig);
@@ -219,7 +220,7 @@
             init: () => {
                 onAuthStateChanged(auth, async (u) => {
                     if (u) { document.getElementById('view-loading').classList.add('hidden'); app.setView('gateway'); }
-                    else { try { await signInAnonymously(auth); } catch(e) {} }
+                    else { try { await signInAnonymously(auth); } catch(e) { console.error(e); } }
                 });
                 lucide.createIcons();
             },
@@ -233,7 +234,7 @@
             closeAdminModal: () => document.getElementById('admin-password-modal').classList.add('hidden'),
             verifyAdmin: () => {
                 if (document.getElementById('admin-pwd-input').value === ADMIN_PWD) { app.setView('admin'); admin.loadData(); app.closeAdminModal(); }
-                else ui.toast("管理密碼錯誤", false);
+                else ui.toast("密碼不正確", false);
             },
             handleLogin: async (e) => {
                 e.preventDefault();
@@ -245,8 +246,8 @@
                     if (snap.exists() && snap.data().idLast4 === l4 && snap.data().birthday === bd) {
                         state.profile = snap.data();
                         app.loadSelection();
-                    } else ui.toast("身分驗證失敗，請檢查輸入", false);
-                } catch(e) { ui.toast("網路連線超時", false); }
+                    } else ui.toast("驗證失敗，查無此人或資料輸入錯誤", false);
+                } catch(e) { ui.toast("連線異常，請稍後再試", false); }
             },
             loadSelection: async () => {
                 const sid = state.profile.studentId;
@@ -257,7 +258,7 @@
 
                 document.getElementById('nav-user').innerText = `${state.profile.name} (${sid})`;
                 document.getElementById('nav-user').classList.remove('hidden');
-                document.getElementById('grade-label').innerText = `國${grade === '1' ? '一' : grade === '2' ? '二' : '三'} 志願選填區`;
+                document.getElementById('grade-label').innerText = `目前顯示：國${grade === '1' ? '一' : grade === '2' ? '二' : '三'} 志願選填區`;
 
                 if (subSnap.exists()) {
                     state.preferences = subSnap.data().preferences;
@@ -271,14 +272,14 @@
             },
             renderList: () => {
                 const container = document.getElementById('club-list');
-                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic">尚未匯入該年級社團資料</div>'; return; }
+                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic">尚未上傳該年級社團清單</div>'; return; }
                 container.innerHTML = state.preferences.map((c, i) => `
-                    <div class="p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left">
-                        <div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black italic">${i+1}</div>
-                        <div class="flex-grow text-left text-slate-800"><h4 class="font-black text-xl text-left">${c.name}</h4><p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">${c.category}</p></div>
-                        <div class="flex gap-2 text-center">
-                            <button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90">⬆️</button>
-                            <button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90">⬇️</button>
+                    <div class="p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left text-slate-800 text-left text-left text-left">
+                        <div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black italic text-center text-center text-center text-center">${i+1}</div>
+                        <div class="flex-grow text-left text-slate-800 text-left text-left text-left text-left text-left text-left text-left"><h4 class="font-black text-xl text-left text-left text-left text-left">${c.name}</h4><p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-left text-left text-left text-left">${c.category}</p></div>
+                        <div class="flex gap-2 text-center text-center text-center text-center">
+                            <button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-center text-center text-center text-center text-center">⬆️</button>
+                            <button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-center text-center text-center text-center text-center text-center">⬇️</button>
                         </div>
                     </div>
                 `).join('');
@@ -292,12 +293,12 @@
                     const sid = state.profile.studentId;
                     const payload = { studentId: sid, name: state.profile.name, grade: state.profile.grade, preferences: state.preferences, timestamp: new Date().toISOString() };
                     await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'all_submissions', sid), payload);
-                    ui.toast("志願提交成功！"); app.renderSummary(payload); app.setView('summary');
-                } catch(e) { ui.toast("存檔失敗", false); }
+                    ui.toast("志願提交完成！"); app.renderSummary(payload); app.setView('summary');
+                } catch(e) { ui.toast("同步失敗，請檢查網路", false); }
             },
             renderSummary: (d) => {
                 document.getElementById('summary-name').innerText = `${d.name} 同學`;
-                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left"><span>志願 #${i+1}</span><span class="text-blue-700 font-black text-right">${c.name}</span></li>`).join('');
+                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left text-left text-left"><span>志願 #${i+1}</span><span class="text-blue-700 font-black text-right text-right text-right text-right">${c.name}</span></li>`).join('');
                 document.getElementById('summary-time').innerText = "系統存檔日期："+new Date(d.timestamp).toLocaleString();
             },
             logout: async () => { await signOut(auth); location.reload(); }
@@ -307,7 +308,7 @@
             switchTab: (t) => {
                 ['lookup', 'import', 'report'].forEach(id => {
                     document.getElementById('panel-'+id).classList.toggle('hidden', id !== t);
-                    document.getElementById('tab-'+id).className = id === t ? 'flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center' : 'flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50';
+                    document.getElementById('tab-'+id).className = id === t ? 'flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center text-center text-center text-center' : 'flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50 text-center text-center text-center text-center';
                 });
                 if(t === 'report') admin.loadReports();
             },
@@ -320,7 +321,7 @@
                 const q = document.getElementById('search-lookup').value.trim().toLowerCase();
                 const tbody = document.getElementById('admin-lookup-body');
                 const filtered = state.students.filter(s => s.studentId.includes(q) || s.name.includes(q));
-                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
+                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left text-left">${s.name}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left text-left text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
             },
             setTarget: (t) => {
                 state.target = t;
@@ -329,16 +330,24 @@
                 document.getElementById('import-clubs-options').classList.toggle('hidden', t !== 'clubs');
             },
             doImport: async () => {
+                const btn = document.getElementById('import-submit-btn');
                 let raw = document.getElementById('import-area').value;
-                const match = raw.match(/\[[\s\S]*\]/); // V24 超強防呆：抓取最外圍方括號內容
-                if (!match) return ui.toast("無法解析資料。請確認包含方括號 [ ]。", false);
+                const match = raw.match(/\[[\s\S]*\]/); 
+                if (!match) return ui.toast("解析失敗，請確認包含 [ ] 格式", false);
                 
                 let clean = match[0];
-                // V24 加強過濾機制：移除 BOM、全形符號、隱形字元
-                clean = clean.replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/，/g, ",").replace(/[\u200B-\u200D\uFEFF]/g, "").replace(/,(\s*[\]}])/g, "$1");
+                // V25 終極修復：深度清洗所有不可見字元與全形符號
+                clean = clean.replace(/[\u200B-\u200D\uFEFF\u00A0]/g, "") // 移除零寬空格與不可見字元
+                            .replace(/[“”]/g, '"')
+                            .replace(/[‘’]/g, "'")
+                            .replace(/，/g, ",")
+                            .replace(/；/g, ";")
+                            .replace(/、/g, ",")
+                            .replace(/,(\s*[\]}])/g, "$1"); // 移除結尾多餘逗號
 
                 try {
                     const data = JSON.parse(clean);
+                    btn.disabled = true; btn.innerText = "雲端處理中...";
                     if (state.target === 'students') {
                         const batchLimit = 300;
                         for (let i = 0; i < data.length; i += batchLimit) {
@@ -346,14 +355,15 @@
                             data.slice(i, i + batchLimit).forEach(s => batch.set(doc(db, 'artifacts', appId, 'public', 'data', 'students', s.studentId), s));
                             await batch.commit();
                         }
-                        ui.toast(`匯入 ${data.length} 位學生成功`); admin.loadData();
+                        ui.toast(`成功同步 ${data.length} 位學生檔案`); admin.loadData();
                     } else {
                         const g = document.getElementById('import-grade').value;
                         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'clubList_' + g), { items: data });
-                        ui.toast(`國${g}社團名單已更新`);
+                        ui.toast(`國${g}社團名單更新成功`);
                     }
                     document.getElementById('import-area').value = '';
-                } catch(e) { ui.toast("JSON 語法解析失敗，請確認引號與逗號成對", false); }
+                } catch(e) { ui.toast("語法報錯，請檢查 JSON 引號是否完整", false); }
+                finally { btn.disabled = false; btn.innerText = "確認同步至雲端"; }
             },
             loadReports: async () => {
                 const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'all_submissions'));
@@ -361,11 +371,11 @@
                 document.getElementById('sub-count').innerText = snap.size;
             },
             exportCSV: () => {
-                if(state.submissions.length === 0) return ui.toast("目前無數據可匯出", false);
+                if(state.submissions.length === 0) return ui.toast("無資料可匯出", false);
                 let csv = "\uFEFF年級,學號,姓名,提交時間,第一志願\n";
                 state.submissions.forEach(r => { csv += `${r.grade},${r.studentId},${r.name},${r.timestamp},${r.preferences[0].name}\n`; });
                 const link = document.createElement("a"); link.href = encodeURI("data:text/csv;charset=utf-8," + csv);
-                link.download = `歸仁國中志願報表_${new Date().toLocaleDateString()}.csv`; link.click();
+                link.download = `選填總表_${new Date().toLocaleDateString()}.csv`; link.click();
             }
         };
 
