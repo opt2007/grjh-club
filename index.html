@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歸仁國中 | 社團選填管理系統 V30</title>
+    <title>歸仁國中 | 社團選填管理系統 V30.1</title>
     <!-- 使用最高穩定性的 CDN 連結 -->
     <script src="https://cdn.tailwindcss.com/"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; -webkit-tap-highlight-color: transparent; }
-        .fade-in { animation: fadeIn 0.4s ease-out; }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .modal-backdrop { background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); }
         .status-pill { padding: 2px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
         @media print { .no-print { display: none !important; } }
     </style>
 </head>
-<body class="text-slate-800 min-h-screen flex flex-col antialiased">
+<body class="text-slate-800 min-h-screen flex flex-col antialiased text-left">
 
     <!-- 頂部導覽列 -->
     <nav class="bg-[#1e1b4b] text-white p-4 shadow-2xl sticky top-0 z-50 no-print">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="flex flex-col text-left">
                     <h1 class="font-black text-lg tracking-tight leading-none text-white">台南市立歸仁國中</h1>
-                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-[0.2em] mt-1">Selection System V30.0</span>
+                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-[0.2em] mt-1">Selection System V30.1</span>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -44,47 +44,47 @@
         <div id="view-loading" class="flex flex-col items-center justify-center h-[60vh] text-center">
             <div class="relative">
                 <div class="w-16 h-16 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin"></div>
-                <div class="absolute inset-0 flex items-center justify-center text-xs font-black text-indigo-600">V30</div>
+                <div class="absolute inset-0 flex items-center justify-center text-xs font-black text-indigo-600">V30.1</div>
             </div>
             <p class="mt-6 text-slate-400 font-bold tracking-widest animate-pulse">雲端數據加密同步中...</p>
         </div>
 
         <!-- 1. 入口首頁 -->
-        <section id="view-gateway" class="hidden fade-in py-12 text-center">
+        <section id="view-gateway" class="hidden fade-in py-12 text-center text-left">
             <div class="mb-12">
                 <h2 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter italic">社團志願選填</h2>
                 <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-500 text-lg font-medium">穩定 · 安全 · 公正</p>
+                <p class="text-slate-500 text-lg font-medium italic">穩定 · 安全 · 公正</p>
             </div>
             <div class="flex flex-col md:flex-row justify-center gap-6 max-w-2xl mx-auto px-4">
-                <button onclick="app.setView('login')" class="flex-1 px-8 py-6 bg-blue-600 text-white rounded-3xl font-black text-xl shadow-2xl hover:bg-blue-700 transition transform active:scale-95 flex flex-col items-center gap-2">
+                <button onclick="app.setView('login')" class="flex-1 px-8 py-6 bg-blue-600 text-white rounded-3xl font-black text-xl shadow-2xl hover:bg-blue-700 transition transform active:scale-95 flex flex-col items-center gap-2 text-center">
                     <span>進入驗證選填</span>
-                    <span class="text-xs opacity-60 font-normal">Student Login</span>
+                    <span class="text-xs opacity-60 font-normal tracking-widest">Student Login</span>
                 </button>
-                <button class="flex-1 px-8 py-6 bg-white border-2 border-slate-200 text-slate-300 rounded-3xl font-black text-xl cursor-not-allowed flex flex-col items-center gap-2">
+                <button class="flex-1 px-8 py-6 bg-white border-2 border-slate-200 text-slate-300 rounded-3xl font-black text-xl cursor-not-allowed flex flex-col items-center gap-2 text-center text-center">
                     <span>錄取結果公告</span>
-                    <span class="text-xs font-normal">Coming Soon</span>
+                    <span class="text-xs font-normal tracking-widest">Coming Soon</span>
                 </button>
             </div>
         </section>
 
         <!-- 2. 學生登入 -->
-        <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12">
-            <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center relative overflow-hidden">
+        <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12 text-left">
+            <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center relative overflow-hidden text-left">
                 <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
                 <h2 class="text-3xl font-black mb-8 text-slate-800 tracking-tight italic">身分驗證登入</h2>
                 <form id="login-form" class="space-y-5 text-left" onsubmit="app.handleLogin(event)">
                     <div>
-                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1">學號 (帳號)</label>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">學號 (帳號)</label>
                         <input type="text" id="login-sid" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner" placeholder="輸入學號" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1">身分證末四碼</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">身分證末四碼</label>
                             <input type="password" id="login-l4" maxlength="4" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner" placeholder="1234" required>
                         </div>
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1">生日 (MMDD)</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">生日 (MMDD)</label>
                             <input type="text" id="login-bd" maxlength="4" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner" placeholder="如 0814" required>
                         </div>
                     </div>
@@ -100,10 +100,10 @@
                     <h2 class="text-3xl font-black text-slate-900 tracking-tighter italic text-left">志願序位階調整</h2>
                     <p id="grade-label" class="mt-2 bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-black inline-block"></p>
                 </div>
-                <button onclick="app.logout()" class="text-slate-400 hover:text-red-500 font-bold underline text-xs">登出系統</button>
+                <button onclick="app.logout()" class="text-slate-400 hover:text-red-500 font-bold underline text-xs transition-colors">登出系統</button>
             </div>
             
-            <div id="club-list" class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden divide-y divide-slate-100 mb-12"></div>
+            <div id="club-list" class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden divide-y divide-slate-100 mb-12 text-left"></div>
             
             <div class="sticky bottom-6 no-print">
                 <button onclick="app.showConfirmModal()" class="w-full bg-emerald-600 text-white font-black py-6 rounded-[2rem] shadow-2xl hover:bg-emerald-700 transition-all text-xl tracking-tighter">💾 確定排序正確，正式存檔鎖定</button>
@@ -112,8 +112,8 @@
 
         <!-- 4. 成功摘要 -->
         <section id="view-summary" class="hidden fade-in text-center py-12">
-            <div class="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-5xl mx-auto mb-8 shadow-inner">✓</div>
-            <h2 class="text-3xl font-black text-slate-900 mb-10 italic underline decoration-emerald-400 underline-offset-[12px]">選填成功 · 數據已鎖定</h2>
+            <div class="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-5xl mx-auto mb-8 shadow-inner text-center">✓</div>
+            <h2 class="text-3xl font-black text-slate-900 mb-10 italic underline decoration-emerald-400 underline-offset-[12px] text-center">選填成功 · 數據已鎖定</h2>
             <div class="bg-white p-10 rounded-[3.5rem] shadow-2xl border-t-[12px] border-emerald-500 max-w-md mx-auto text-left relative overflow-hidden">
                 <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left text-left"></h4>
                 <p class="text-[10px] text-slate-400 font-black uppercase mb-4 tracking-widest text-left">志願序前五名摘要：</p>
@@ -123,87 +123,65 @@
                     <button onclick="window.print()" class="px-6 py-2 bg-slate-900 text-white rounded-xl font-black text-xs shadow-lg no-print">🖨️ 列印存證單</button>
                 </div>
             </div>
-            <button onclick="app.logout()" class="mt-12 text-slate-400 font-black underline text-xs">安全登出系統</button>
+            <button onclick="app.logout()" class="mt-12 text-slate-400 font-black underline text-xs transition-colors">安全登出系統</button>
         </section>
 
-        <!-- 5. 管理後台 (核心功能) -->
-        <section id="view-admin" class="hidden fade-in text-left">
-            <div class="flex justify-between items-center mb-8 border-b-2 pb-6">
-                <h2 class="text-3xl font-black flex items-center gap-3 text-slate-800 italic underline decoration-blue-600 underline-offset-4">⚙️ 系統管理控制台</h2>
-                <button onclick="app.setView('gateway')" class="text-rose-500 font-bold underline italic text-sm transition-colors">離開</button>
+        <!-- 5. 管理後台 -->
+        <section id="view-admin" class="hidden fade-in text-left text-left">
+            <div class="flex justify-between items-center mb-8 border-b-2 pb-6 text-left">
+                <h2 class="text-2xl font-black flex items-center gap-3 text-slate-800 italic underline decoration-blue-600 underline-offset-4 text-left text-left">⚙️ 系統管理控制台</h2>
+                <button onclick="app.setView('gateway')" class="text-rose-500 font-bold underline italic text-sm transition-colors text-left">離開</button>
             </div>
 
             <div class="flex bg-slate-200 p-1.5 rounded-2xl mb-10 gap-2 max-w-xl shadow-inner border border-slate-300">
-                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center text-center">個資查詢</button>
-                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center text-center">智慧匯入</button>
-                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center text-center">報表中心</button>
+                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center">個資查詢</button>
+                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">智慧匯入</button>
+                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">報表中心</button>
             </div>
 
-            <!-- 分頁: 查詢 -->
-            <div id="panel-lookup" class="space-y-6 text-left text-left">
-                <div class="bg-white p-6 rounded-[2.5rem] shadow-xl border border-blue-100 flex items-center gap-4">
+            <div id="panel-lookup" class="space-y-6 text-left">
+                <div class="bg-white p-6 rounded-[2.5rem] shadow-xl border border-blue-100 flex items-center gap-4 text-left">
                     <i data-lucide="search" class="text-slate-300"></i>
                     <input type="text" id="search-lookup" oninput="admin.renderLookup()" class="flex-grow p-2 outline-none font-bold text-lg text-slate-700" placeholder="搜尋姓名或學號，即時查看生日/末四碼...">
                 </div>
-                <div class="bg-white rounded-[2.5rem] border shadow-sm overflow-hidden text-left text-left">
+                <div class="bg-white rounded-[2.5rem] border shadow-sm overflow-hidden text-left text-left text-left text-left">
                     <table class="w-full text-left">
                         <thead class="bg-slate-50 border-b text-[10px] font-black text-slate-400 tracking-widest text-left">
-                            <tr><th class="p-5">學號</th><th class="p-5">姓名</th><th class="p-5">年級</th><th class="p-5 text-blue-600 bg-blue-50/50">末四碼</th><th class="p-5 text-blue-600 bg-blue-50/50">生日</th></tr>
+                            <tr><th class="p-5">學號</th><th class="p-5">姓名</th><th class="p-5">年級</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left">末四碼</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left">生日</th></tr>
                         </thead>
                         <tbody id="admin-lookup-body" class="divide-y text-sm font-medium text-left italic"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- 分頁: 匯入 (V30 終極解析) -->
-            <div id="panel-import" class="hidden space-y-8 text-left text-left text-left">
-                <div class="bg-white p-8 rounded-[3rem] border border-blue-100 shadow-2xl relative">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-black text-blue-700 text-xl italic flex items-center gap-2"><i data-lucide="database"></i> 數據庫同步引擎</h3>
-                        <div id="import-progress" class="hidden text-xs font-black text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full animate-pulse border border-emerald-200 text-left">處理中：0%</div>
+            <div id="panel-import" class="hidden space-y-8 text-left text-left text-left text-left">
+                <div class="bg-white p-8 rounded-[3rem] border border-blue-100 shadow-2xl relative text-left">
+                    <div class="flex justify-between items-center mb-6 text-left">
+                        <h3 class="font-black text-blue-700 text-xl italic flex items-center gap-2 text-left text-left"><i data-lucide="database"></i> 數據庫同步引擎</h3>
+                        <div id="import-progress" class="hidden text-xs font-black text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full animate-pulse border border-emerald-200">處理中：0%</div>
                     </div>
                     
-                    <div class="bg-amber-50 p-5 rounded-2xl mb-8 border border-amber-200">
-                        <p class="text-amber-800 text-[11px] font-bold leading-relaxed text-left text-left">
-                            🚀 <b>V30 零容錯模式：</b><br>
-                            1. 系統會自動剔除 ```json 或 [Part 1] 等干擾文字。<br>
-                            2. 支援全形逗號轉半形，自動修補遺漏的引號。<br>
-                            3. 針對 1,222 位學生進行分段保護寫入。
-                        </p>
+                    <textarea id="import-area" class="w-full h-72 p-6 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-[2.5rem] outline-none shadow-inner border-4 border-slate-800 focus:border-blue-600 transition-all text-left" placeholder="直接在此貼上 JSON 內容..."></textarea>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <button onclick="admin.setTarget('students')" id="target-students" class="p-4 rounded-2xl text-xs font-black bg-blue-600 text-white shadow-md transition-all">同步學生名單</button>
+                        <button onclick="admin.setTarget('clubs')" id="target-clubs" class="p-4 rounded-2xl text-xs font-black bg-slate-100 text-slate-400 transition-all">同步社團名單</button>
                     </div>
-
-                    <div class="flex gap-4 mb-6">
-                        <button onclick="admin.setTarget('students')" id="target-students" class="px-8 py-3 rounded-2xl text-xs font-black bg-blue-600 text-white transition-all shadow-md">1. 同步學生清單</button>
-                        <button onclick="admin.setTarget('clubs')" id="target-clubs" class="px-8 py-3 rounded-2xl text-xs font-black bg-slate-100 text-slate-400 transition-all">2. 同步社團名單</button>
-                    </div>
-
-                    <div id="import-clubs-options" class="hidden mb-6 flex gap-4 text-left">
-                        <select id="import-grade" class="p-4 bg-slate-50 border-2 rounded-2xl font-black text-sm outline-none focus:border-blue-500">
-                            <option value="1">設定國一 (7年級) 名單</option><option value="2">設定國二 (8年級) 名單</option><option value="3">設定國三 (9年級) 名單</option>
-                        </select>
-                    </div>
-
-                    <textarea id="import-area" class="w-full h-72 p-6 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-[2.5rem] outline-none shadow-inner border-4 border-slate-800 focus:border-blue-600 transition-all" placeholder="直接在此貼上 JSON 內容..."></textarea>
-                    
-                    <button id="import-btn" onclick="admin.doImport()" class="mt-8 w-full bg-blue-600 text-white font-black py-5 rounded-[2rem] shadow-2xl hover:bg-blue-700 transition flex items-center justify-center gap-2 text-xl active:scale-95">開始同步雲端數據</button>
+                    <button id="import-btn" onclick="admin.doImport()" class="mt-8 w-full bg-slate-900 text-white font-black py-5 rounded-[2rem] shadow-2xl hover:bg-black transition flex items-center justify-center gap-2 text-xl active:scale-95">開始同步雲端數據</button>
                 </div>
             </div>
 
-            <!-- 分頁: 報表 -->
-            <div id="panel-report" class="hidden text-center text-left text-left text-left text-left">
+            <div id="panel-report" class="hidden text-center text-left text-left text-left text-left text-left text-left text-left text-left text-left">
                 <div class="bg-white p-12 rounded-[3.5rem] border shadow-sm text-center">
-                    <i data-lucide="file-text" class="w-16 h-16 mx-auto text-slate-200 mb-6"></i>
-                    <h3 class="text-2xl font-black mb-10 text-center">志願分發原始數據總表</h3>
                     <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-12 py-5 rounded-[2rem] font-black shadow-2xl hover:bg-black transition-all text-xl mx-auto block text-center">匯出全校 CSV (Excel格式)</button>
-                    <div class="mt-10 text-xs text-slate-400 italic font-bold">雲端收件統計：<span id="sub-count" class="text-blue-600">0</span> 筆</div>
+                    <div class="mt-10 text-xs text-slate-400 italic font-bold text-center text-center text-center">雲端收件統計：<span id="sub-count" class="text-blue-600">0</span> 筆</div>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Modal: 管理員驗證 -->
-    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl p-10 w-full max-w-sm fade-in text-center text-left">
+    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop text-left">
+        <div class="bg-white rounded-[2.5rem] shadow-2xl p-10 w-full max-w-sm fade-in text-center text-left text-left text-left">
             <h3 class="text-2xl font-black mb-6 text-slate-800 text-center">後台權限驗證</h3>
             <input type="password" id="admin-pwd-input" class="w-full p-5 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-8 shadow-inner text-slate-700 text-xl" placeholder="輸入密碼">
             <div class="flex gap-4 text-center"><button onclick="app.closeAdminModal()" class="flex-1 py-4 text-slate-400 font-bold transition rounded-2xl text-center hover:bg-slate-100">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center active:scale-95">進入後台</button></div>
@@ -213,20 +191,18 @@
     <!-- Modal: 送出確認 -->
     <div id="modal-confirm" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-backdrop text-center text-left text-left text-left">
         <div class="bg-white rounded-[4rem] shadow-2xl p-12 w-full max-w-md border-t-[12px] border-emerald-500 text-center text-left text-left text-left">
-            <div class="text-6xl mb-8 text-center text-center">⚠️</div>
-            <h3 class="text-3xl font-black mb-4 tracking-tight text-center text-slate-900 italic text-center">確定存檔？</h3>
-            <p class="text-red-600 font-black mb-12 text-sm leading-relaxed text-center text-left text-left text-left">存檔後志願將正式封存於雲端，無法再行修改順序。請確認目前的排序正確無誤。</p>
-            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-5 text-slate-400 font-bold border rounded-3xl text-center text-left hover:bg-slate-50">返回檢查</button><button onclick="app.savePrefs()" class="flex-1 py-5 bg-[#10b981] text-white rounded-3xl font-black shadow-xl text-center text-left active:scale-95">確定送出</button></div>
+            <h3 class="text-3xl font-black mb-4 tracking-tight text-center text-slate-900 italic text-center text-center">確定存檔？</h3>
+            <p class="text-red-600 font-black mb-12 text-sm leading-relaxed text-center text-left text-left text-left text-left">存檔後志願將正式封存於雲端，無法再行修改順序。</p>
+            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-5 text-slate-400 font-bold border rounded-3xl text-center text-left hover:bg-slate-50">返回檢查</button><button onclick="app.savePrefs()" class="flex-1 py-5 bg-[#10b981] text-white rounded-3xl font-black shadow-xl text-center text-left active:scale-95">確定送出</button></div>
         </div>
     </div>
 
-    <!-- Toast -->
-    <div id="toast" class="fixed bottom-10 right-10 transform translate-y-20 opacity-0 transition-all z-[200] px-10 py-5 rounded-3xl shadow-2xl text-white font-black flex items-center gap-4 text-base duration-500 text-center text-center text-center"></div>
+    <div id="toast" class="fixed bottom-10 right-10 transform translate-y-20 opacity-0 transition-all z-[200] px-10 py-5 rounded-3xl shadow-2xl text-white font-black flex items-center gap-4 text-base duration-500 text-center text-center text-center text-center text-center text-center"></div>
 
     <script type="module">
-        import { initializeApp } from "[https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js](https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js)";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "[https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js](https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js)";
-        import { getFirestore, doc, getDoc, setDoc, collection, getDocs, writeBatch, onSnapshot } from "[https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js](https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js)";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, collection, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBzju7-kOPl518a32_aiLzfyNWM7THAVgc",
@@ -252,8 +228,18 @@
         window.app = {
             init: () => {
                 onAuthStateChanged(auth, async (u) => {
-                    if (u) { document.getElementById('view-loading').classList.add('hidden'); app.setView('gateway'); }
-                    else { await signInAnonymously(auth); }
+                    if (u) { 
+                        document.getElementById('view-loading').classList.add('hidden'); 
+                        app.setView('gateway'); 
+                    }
+                    else { 
+                        try {
+                            await signInAnonymously(auth);
+                        } catch(e) {
+                            console.error("Firebase Login Error", e);
+                            ui.toast("雲端連線失敗，請檢查網路環境", false);
+                        }
+                    }
                 });
                 lucide.createIcons();
             },
@@ -280,7 +266,7 @@
                         state.profile = snap.data();
                         app.loadSelection();
                     } else ui.toast("學號、生日或末四碼錯誤", false);
-                } catch(e) { ui.toast("網路異常", false); }
+                } catch(e) { ui.toast("網路連線超時", false); }
             },
             loadSelection: async () => {
                 const sid = state.profile.studentId;
@@ -305,11 +291,11 @@
             },
             renderSelectionUI: () => {
                 const container = document.getElementById('club-list'); container.innerHTML = '';
-                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic">目前尚未匯入社團清單</div>'; return; }
+                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic text-center">目前尚未匯入社團清單</div>'; return; }
                 state.preferences.forEach((c, i) => {
                     const d = document.createElement('div');
                     d.className = 'p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left';
-                    d.innerHTML = `<div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm">${i+1}</div><div class="flex-grow text-left"><h4 class="font-black text-xl text-slate-800 text-left">${c.name}</h4><div class="flex gap-2 mt-1"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${c.category}</span></div></div><div class="flex gap-2"><button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl">⬆️</button><button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl">⬇️</button></div>`;
+                    d.innerHTML = `<div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black text-center">${i+1}</div><div class="flex-grow text-left text-left"><h4 class="font-black text-xl text-slate-800 text-left text-left">${c.name}</h4><div class="flex gap-2 mt-1 text-left"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left">${c.category}</span></div></div><div class="flex gap-2 text-center text-center"><button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center text-center">⬆️</button><button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center text-center">⬇️</button></div>`;
                     container.appendChild(d);
                 });
             },
@@ -327,7 +313,7 @@
             },
             renderSummary: (d) => {
                 document.getElementById('summary-name').innerText = `${d.name} 同學`;
-                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold"><span>第 ${i+1} 志願</span><span class="text-blue-700 font-black">${c.name}</span></li>`).join('');
+                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left"><span>第 ${i+1} 志願</span><span class="text-blue-700 font-black">${c.name}</span></li>`).join('');
                 document.getElementById('summary-time').innerText = "系統封存："+new Date(d.timestamp).toLocaleString();
             },
             logout: async () => { await signOut(auth); location.reload(); }
@@ -337,7 +323,7 @@
             switchTab: (t) => {
                 ['lookup', 'import', 'report'].forEach(id => {
                     document.getElementById('panel-'+id).classList.toggle('hidden', id !== t);
-                    document.getElementById('tab-'+id).className = id === t ? 'flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center' : 'flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50';
+                    document.getElementById('tab-'+id).className = id === t ? 'flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center' : 'flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50 text-center';
                 });
                 if(t === 'report') admin.loadReports();
             },
@@ -350,7 +336,7 @@
                 const q = document.getElementById('search-lookup').value.trim().toLowerCase();
                 const tbody = document.getElementById('admin-lookup-body');
                 const filtered = state.students.filter(s => s.studentId.includes(q) || s.name.includes(q));
-                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left">${s.birthday}</td></tr>`).join('');
+                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left text-left text-left text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left text-left">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
             },
             setTarget: (t) => {
                 state.target = t;
@@ -366,7 +352,7 @@
                 if (!match) return ui.toast("無法解析資料。請確認包含方括號 [ ]。", false);
                 
                 let clean = match[0];
-                // V30 終極修復：全形轉半形、移除不可見控制字元
+                // V30 終極修復：處理全形標點與不可見字元
                 clean = clean.replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/，/g, ",").replace(/[\u200B-\u200D\uFEFF]/g, "").replace(/,(\s*[\]}])/g, "$1");
 
                 try {
@@ -374,7 +360,7 @@
                     btn.disabled = true; progressDiv.classList.remove('hidden');
                     
                     if (state.target === 'students') {
-                        const batchLimit = 200; // 降低每批數量以提升穩定性
+                        const batchLimit = 150; 
                         for (let i = 0; i < data.length; i += batchLimit) {
                             const batch = writeBatch(db);
                             const chunk = data.slice(i, i + batchLimit);
@@ -389,7 +375,7 @@
                         ui.toast(`國${g}社團名單已更新`);
                     }
                     document.getElementById('import-area').value = '';
-                } catch(e) { ui.toast("JSON 格式依然有誤，請檢查引號是否成對", false); }
+                } catch(e) { ui.toast("JSON 格式依然有誤，請檢查內容", false); }
                 finally { btn.disabled = false; progressDiv.classList.add('hidden'); }
             },
             loadReports: async () => {
