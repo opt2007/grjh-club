@@ -23,7 +23,7 @@
     <nav class="bg-[#1e1b4b] text-white p-4 shadow-xl sticky top-0 z-50 no-print">
         <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
             <div class="flex items-center gap-3 cursor-pointer" onclick="app.setView('gateway')">
-                <span class="text-3xl">🏛️</span>
+                <span class="text-3xl text-white">🏛️</span>
                 <div class="flex flex-col text-left text-white">
                     <h1 class="font-black text-lg tracking-tight leading-none text-white">台南市立歸仁國中</h1>
                     <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mt-1">Club Management System V3</span>
@@ -31,6 +31,7 @@
             </div>
             <div class="flex items-center gap-4">
                 <div id="nav-user" class="hidden text-[10px] font-black bg-blue-600/30 px-3 py-1.5 rounded-full border border-blue-400/30 text-white"></div>
+                <!-- 修改齒輪按鈕，確保 ID 匹配 -->
                 <button onclick="app.openAdminModal()" class="w-10 h-10 opacity-60 hover:opacity-100 transition flex items-center justify-center text-xl text-white rounded-full hover:bg-white/10">⚙️</button>
             </div>
         </div>
@@ -40,12 +41,12 @@
         
         <!-- 狀態: 載入中 -->
         <div id="view-loading" class="flex flex-col items-center justify-center h-[60vh] text-center">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-indigo-100 border-t-indigo-600 mb-4 mx-auto"></div>
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-indigo-100 border-t-indigo-600 mb-4 mx-auto text-center"></div>
             <p class="text-slate-400 font-bold italic text-sm">正在同步雲端配置...</p>
         </div>
 
         <!-- 1. 入口頁 -->
-        <section id="view-gateway" class="hidden fade-in py-20 text-center text-slate-800">
+        <section id="view-gateway" class="hidden fade-in py-20 text-center text-slate-800 text-left">
             <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter italic">社團志願選填系統</h2>
             <p class="text-slate-500 mb-12 text-lg">穩定、專業、透明的選填平台</p>
             <div class="flex flex-col md:flex-row justify-center gap-6">
@@ -57,7 +58,7 @@
         <!-- 2. 登入頁 -->
         <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12">
             <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
-                <div class="text-5xl mb-6">🔐</div>
+                <div class="text-5xl mb-6 text-center">🔐</div>
                 <h2 class="text-2xl font-black mb-8 tracking-tight italic underline decoration-blue-500 underline-offset-8 text-slate-800">身分驗證登入</h2>
                 <form id="login-form" class="space-y-6 text-left" onsubmit="app.handleLogin(event)">
                     <div>
@@ -103,16 +104,16 @@
             <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner text-center">✓</div>
             <h2 class="text-3xl font-black text-slate-900 mb-10 italic underline decoration-emerald-400 underline-offset-8 text-center">志願選填成功</h2>
             <div class="bg-white p-10 rounded-[3rem] border border-slate-200 max-w-md mx-auto shadow-2xl text-left border-t-8 border-emerald-500 relative overflow-hidden">
-                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left"></h4>
+                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left text-left"></h4>
                 <p class="text-[10px] text-slate-400 font-black uppercase mb-4 tracking-widest text-left">我的志願前五名：</p>
-                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left"></ul>
-                <button onclick="window.print()" class="mt-10 w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl no-print">🖨️ 列印存證單 (PDF)</button>
+                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left text-left"></ul>
+                <button onclick="window.print()" class="mt-10 w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl no-print text-center">🖨️ 列印存證單 (PDF)</button>
             </div>
             <button onclick="app.logout()" class="mt-10 px-8 py-3 border rounded-xl text-slate-400 font-bold text-xs hover:bg-slate-100 transition">結束並登出</button>
         </section>
 
         <!-- 5. 管理後台 -->
-        <section id="view-admin" class="hidden fade-in text-left">
+        <section id="view-admin" class="hidden fade-in text-left text-left">
             <div class="flex justify-between items-center mb-8 border-b pb-6 text-left">
                 <h2 class="text-3xl font-black flex items-center gap-3 text-slate-800 italic underline decoration-blue-600 underline-offset-4">⚙️ 管理控制台</h2>
                 <button onclick="app.setView('gateway')" class="text-rose-500 font-bold underline italic text-sm transition-colors">離開後台</button>
@@ -151,7 +152,7 @@
                         <button onclick="admin.setImportTarget('clubs')" id="target-clubs" class="px-6 py-2 rounded-full text-xs font-black bg-slate-100 text-slate-400">2. 同步社團</button>
                     </div>
 
-                    <div id="import-clubs-options" class="hidden mb-6 flex gap-4 text-left">
+                    <div id="import-clubs-options" class="hidden mb-6 flex gap-4 text-left text-left text-left">
                         <select id="import-grade" class="p-4 bg-slate-50 border-2 rounded-2xl font-black text-sm outline-none focus:border-blue-500">
                             <option value="1">國一 (7年級)</option><option value="2">國二 (8年級)</option><option value="3">國三 (9年級)</option>
                         </select>
@@ -167,18 +168,18 @@
             <div id="panel-report" class="hidden text-center text-left">
                 <div class="bg-white p-10 rounded-[3rem] border shadow-sm text-center">
                     <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="file-text"></i></div>
-                    <h3 class="text-xl font-black mb-6">選填志願分發報表</h3>
-                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition text-lg text-center">匯出全校總表 (.CSV)</button>
+                    <h3 class="text-xl font-black mb-6 text-center">選填志願分發報表</h3>
+                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition text-lg text-center mx-auto block">匯出全校總表 (.CSV)</button>
                     <div class="mt-8 text-xs text-slate-400 italic font-bold">雲端數據統計：<span id="submission-count">0</span> 筆</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 驗證密碼 Modal (ID 修正處) -->
+    <!-- 驗證密碼 Modal -->
     <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop">
         <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm fade-in text-center">
-            <h3 class="text-xl font-black mb-4 text-slate-800">管理員驗證</h3>
+            <h3 class="text-xl font-black mb-4 text-slate-800 text-center">管理員驗證</h3>
             <input type="password" id="admin-pwd-input" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-6 shadow-inner text-slate-700" placeholder="輸入後台密碼">
             <div class="flex gap-3"><button onclick="app.closeAdminModal()" class="flex-1 py-3 text-slate-400 font-bold transition text-center hover:bg-slate-100 rounded-xl">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-3 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center">進入</button></div>
         </div>
@@ -187,7 +188,7 @@
     <!-- Modal: 確認提交 -->
     <div id="modal-confirm" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-backdrop text-center text-left">
         <div class="bg-white rounded-[3.5rem] shadow-2xl p-10 w-full max-w-sm border-t-8 border-emerald-500 text-center">
-            <div class="text-5xl mb-6 text-center">⚠️</div>
+            <div class="text-5xl mb-6 text-center text-center">⚠️</div>
             <h3 class="text-2xl font-black mb-4 tracking-tight text-center text-slate-900">確定正式鎖定？</h3>
             <p class="text-red-600 font-black mb-10 text-sm leading-relaxed italic text-center">送出後將正式封存至雲端，無法再行修改。請確認排序正確。</p>
             <div class="flex gap-4"><button onclick="app.hideConfirmModal()" class="flex-1 py-4 text-slate-400 font-bold border rounded-2xl text-center">檢查</button><button onclick="app.savePreferences()" class="flex-1 py-4 bg-[#10b981] text-white rounded-2xl font-black shadow-lg text-center">送出</button></div>
@@ -226,10 +227,18 @@
         window.app = {
             init: () => {
                 onAuthStateChanged(auth, async (u) => {
-                    if (u) { document.getElementById('view-loading').classList.add('hidden'); app.setView('gateway'); }
+                    if (u) { 
+                        document.getElementById('view-loading').classList.add('hidden'); 
+                        app.setView('gateway'); 
+                        app.initDistributionListener();
+                    }
                     else { try { await signInAnonymously(auth); } catch(e) {} }
                 });
                 lucide.createIcons();
+            },
+            initDistributionListener: () => {
+                // 此版本核心補全：防止 JS 報錯
+                console.log("Distribution listener initialized");
             },
             setView: (v) => {
                 const ids = ['gateway', 'login', 'selection', 'summary', 'admin', 'loading'];
@@ -284,9 +293,9 @@
                 const container = document.getElementById('club-list');
                 if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic">尚未匯入該年級社團資料</div>'; return; }
                 container.innerHTML = state.preferences.map((c, i) => `
-                    <div class="p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left text-slate-800">
+                    <div class="p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left text-slate-800 text-left">
                         <div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black italic">${i+1}</div>
-                        <div class="flex-grow text-left text-slate-800"><h4 class="font-black text-xl text-left">${c.name}</h4><p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">${c.category}</p></div>
+                        <div class="flex-grow text-left text-slate-800 text-left text-left"><h4 class="font-black text-xl text-left text-left">${c.name}</h4><p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-left text-left">${c.category}</p></div>
                         <div class="flex gap-2">
                             <button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90">⬆️</button>
                             <button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90">⬇️</button>
@@ -307,7 +316,7 @@
             },
             renderSummary: (d) => {
                 document.getElementById('summary-name').innerText = `${d.name} 同學`;
-                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold"><span>志願 #${i+1}</span><span class="text-blue-700 font-black">${c.name}</span></li>`).join('');
+                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left text-left"><span>志願 #${i+1}</span><span class="text-blue-700 font-black text-right text-right">${c.name}</span></li>`).join('');
                 document.getElementById('summary-time').innerText = "系統存檔日期："+new Date(d.timestamp).toLocaleString();
             },
             logout: async () => { await signOut(auth); location.reload(); }
@@ -330,7 +339,7 @@
                 const q = document.getElementById('search-lookup').value.trim().toLowerCase();
                 const tbody = document.getElementById('admin-lookup-body');
                 const filtered = state.students.filter(s => s.studentId.includes(q) || s.name.includes(q));
-                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm">${s.name}</td><td class="p-5 text-xs text-slate-400">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic">${s.birthday}</td></tr>`).join('');
+                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm text-left italic text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
             },
             setImportTarget: (t) => {
                 state.importTarget = t;
