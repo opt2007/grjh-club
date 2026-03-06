@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歸仁國中 | 社團選填管理系統 V31.5</title>
-    <!-- 引入外部資源 -->
-    <script src="https://cdn.tailwindcss.com/"></script>
+    <title>歸仁國中 | 社團選填管理系統 V33</title>
+    <!-- 引用標準 CDN 資源，修復黑白跑版問題 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
@@ -13,52 +13,59 @@
         .fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .modal-backdrop { background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); }
-        @media print { .no-print { display: none !important; } }
+        .btn-shadow { box-shadow: 0 4px 14px 0 rgba(30, 27, 75, 0.2); }
+        @media print { .no-print { display: none !important; } .print-only { display: block !important; } }
     </style>
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col antialiased">
 
     <!-- 頂部導覽列 -->
-    <nav class="bg-[#1e1b4b] text-white p-4 shadow-xl sticky top-0 z-50 no-print">
-        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 text-left">
+    <nav class="bg-[#1e1b4b] text-white p-4 shadow-xl sticky top-0 z-50 no-print text-left">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
             <div class="flex items-center gap-3 cursor-pointer" onclick="app.setView('gateway')">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg"><span class="text-2xl text-white">🏛️</span></div>
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="school"></i>
+                </div>
                 <div class="flex flex-col text-left">
                     <h1 class="font-black text-lg tracking-tight leading-none text-white">台南市立歸仁國中</h1>
-                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mt-1">Selection System V31.5</span>
+                    <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-widest mt-1">Selection System V33.0</span>
                 </div>
             </div>
             <div class="flex items-center gap-4">
                 <div id="nav-user" class="hidden text-[10px] font-black bg-white/10 px-3 py-1.5 rounded-full border border-white/20"></div>
-                <button onclick="app.openAdminModal()" class="w-10 h-10 flex items-center justify-center text-xl hover:bg-white/10 rounded-full transition-all text-white">⚙️</button>
+                <button onclick="app.openAdminModal()" class="w-10 h-10 flex items-center justify-center text-xl hover:bg-white/10 rounded-full transition-all text-white">
+                    <i data-lucide="settings"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main id="app-container" class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-10 text-left">
+    <main id="app-container" class="flex-grow max-w-6xl mx-auto w-full p-4 md:p-10 text-left">
         
-        <!-- 狀態: 初始化 -->
+        <!-- 狀態: 初始化載入中 -->
         <div id="view-loading" class="flex flex-col items-center justify-center h-[60vh] text-center">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-indigo-100 border-t-indigo-600 mb-4"></div>
-            <p class="text-slate-400 font-bold italic">雲端資料庫校準中...</p>
+            <div class="relative">
+                <div class="w-16 h-16 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin mx-auto"></div>
+            </div>
+            <p class="mt-6 text-slate-400 font-bold tracking-widest animate-pulse italic">正在連接雲端引擎 V33...</p>
         </div>
 
         <!-- 1. 入口首頁 -->
         <section id="view-gateway" class="hidden fade-in py-12 text-center text-left">
-            <div class="mb-12">
-                <h2 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter italic text-center text-left">社團志願選填</h2>
-                <p class="text-slate-500 text-lg font-medium text-center italic text-left">歸仁國中 · 專業選填平台</p>
+            <div class="mb-12 text-center">
+                <h2 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter italic text-center">社團志願選填</h2>
+                <p class="text-slate-500 text-lg font-medium text-center">穩定 · 安全 · 公正</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
                 <button onclick="app.setView('login')" class="group p-10 bg-white border border-slate-200 rounded-[3rem] shadow-xl hover:shadow-2xl hover:border-blue-500 transition-all text-left">
-                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors text-left">🔐</div>
-                    <h3 class="text-3xl font-black mb-2 text-left text-left">學生志願選填</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed text-left">使用學號、生日與末四碼進行身分驗證並排序志願。</p>
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors text-center">✍️</div>
+                    <h3 class="text-3xl font-black mb-2 text-left">學生志願選填</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed text-left">請輸入學號、生日與末四碼進行身分驗證並排序志願。</p>
                 </button>
                 <button class="group p-10 bg-slate-900 text-white rounded-[3rem] shadow-xl opacity-60 cursor-not-allowed text-left">
-                    <div class="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center text-3xl mb-6">📢</div>
+                    <div class="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center text-3xl mb-6 text-center">📢</div>
                     <h3 class="text-3xl font-black mb-2 text-white">分發結果公告</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed text-left">分發作業進行中，結果將於作業完成後公告。</p>
+                    <p class="text-slate-400 text-sm leading-relaxed text-left">作業尚未完成，錄取公告將於後續發佈。</p>
                 </button>
             </div>
         </section>
@@ -66,23 +73,25 @@
         <!-- 2. 學生登入 -->
         <section id="view-login" class="hidden fade-in max-w-md mx-auto py-12 text-left">
             <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden text-left">
-                <h2 class="text-3xl font-black mb-8 text-slate-800 tracking-tight italic text-center text-left underline decoration-blue-500 underline-offset-8">身分驗證登入</h2>
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
+                <h2 class="text-3xl font-black mb-8 text-slate-800 tracking-tight italic text-center underline decoration-blue-500 underline-offset-8">身分驗證登入</h2>
                 <form id="login-form" class="space-y-6 text-left" onsubmit="app.handleLogin(event)">
-                    <div>
-                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">學生學號</label>
-                        <input type="text" id="login-sid" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700" placeholder="學號" required>
+                    <div class="text-left">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left text-left">學生學號 (User ID)</label>
+                        <input type="text" id="login-sid" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700 text-left" placeholder="請輸入學號" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4 text-left">
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">末四碼</label>
-                            <input type="password" id="login-l4" maxlength="4" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700" placeholder="1234" required>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left text-left">末四碼</label>
+                            <input type="password" id="login-l4" maxlength="4" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700" placeholder="1234" required>
                         </div>
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left">生日 (MMDD)</label>
-                            <input type="text" id="login-bd" maxlength="4" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700" placeholder="0814" required>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 block px-1 text-left text-left">生日 (MMDD)</label>
+                            <input type="text" id="login-bd" maxlength="4" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none focus:border-blue-500 font-bold transition shadow-inner text-slate-700 text-left" placeholder="如 0814" required>
                         </div>
                     </div>
-                    <button type="submit" class="w-full bg-[#1e1b4b] text-white font-black py-5 rounded-2xl shadow-xl hover:bg-black transition transform active:scale-95 text-lg text-left text-center">進入選填系統</button>
+                    <button type="submit" class="w-full bg-[#1e1b4b] text-white font-black py-5 rounded-2xl shadow-xl hover:bg-black transition transform active:scale-95 text-lg tracking-widest">登入選填系統</button>
+                    <button type="button" onclick="app.setView('gateway')" class="w-full text-slate-400 text-xs font-bold underline mt-4 text-center">返回入口首頁</button>
                 </form>
             </div>
         </section>
@@ -91,13 +100,20 @@
         <section id="view-selection" class="hidden fade-in text-left">
             <div class="flex justify-between items-end mb-8 border-b pb-6 text-left">
                 <div class="text-left text-left text-left">
-                    <h2 class="text-3xl font-black text-slate-900 tracking-tighter italic">我的志願排序</h2>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tighter italic">我的志願排序清單</h2>
                     <p id="grade-label" class="mt-2 bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-black inline-block italic"></p>
                 </div>
-                <button onclick="app.logout()" class="text-slate-400 hover:text-red-500 font-bold underline text-xs transition-colors">登出離開</button>
+                <button onclick="app.logout()" class="text-slate-400 hover:text-red-500 font-bold underline text-xs transition-colors italic">安全登出系統</button>
             </div>
-            <div id="club-list" class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden divide-y divide-slate-100 mb-12 text-left"></div>
-            <div class="sticky bottom-6 no-print text-center">
+            
+            <div class="bg-amber-50 border-l-8 border-amber-400 p-6 rounded-r-3xl mb-8 shadow-sm flex items-start gap-3 text-left text-left text-left">
+                <i data-lucide="shield-alert" class="text-amber-500 mt-1"></i>
+                <p class="text-amber-800 text-sm font-bold leading-relaxed text-left">排在 <b>第 1 名</b> 代表您的首選。存檔鎖定後不可再行修改。</p>
+            </div>
+
+            <div id="club-list" class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden divide-y divide-slate-100 mb-12 text-left text-left"></div>
+            
+            <div class="sticky bottom-6 no-print text-center text-center">
                 <button onclick="app.showConfirmModal()" class="w-full bg-emerald-600 text-white font-black py-6 rounded-[2rem] shadow-2xl hover:bg-emerald-700 transition-all text-xl tracking-tighter">💾 確認志願序並正式存檔</button>
             </div>
         </section>
@@ -105,92 +121,93 @@
         <!-- 4. 完成摘要 -->
         <section id="view-summary" class="hidden fade-in text-center py-12 text-left">
             <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-8 shadow-inner text-center">✓</div>
-            <h2 class="text-3xl font-black mb-10 italic underline decoration-emerald-400 underline-offset-8 text-center">選填成功 · 數據已鎖定</h2>
-            <div class="bg-white p-10 rounded-[3.5rem] shadow-2xl border-t-[12px] border-emerald-500 max-w-md mx-auto text-left relative overflow-hidden text-left">
-                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left"></h4>
-                <p class="text-[10px] text-slate-400 font-black uppercase mb-4 tracking-widest text-left">志願序前五名摘要：</p>
-                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left italic"></ul>
-                <button onclick="window.print()" class="mt-10 w-full py-4 bg-slate-900 text-white rounded-xl font-black text-sm shadow-xl no-print text-center text-center text-center text-center">🖨️ 列印/儲存存證單 (PDF)</button>
+            <h2 class="text-3xl font-black text-slate-900 mb-10 italic underline decoration-emerald-400 underline-offset-8 text-center text-center text-center">選填成功 · 數據已鎖定</h2>
+            <div class="bg-white p-10 rounded-[3.5rem] shadow-2xl border-t-[12px] border-emerald-500 max-w-md mx-auto text-left relative overflow-hidden text-left text-left text-left">
+                <h4 id="summary-name" class="text-2xl font-black text-slate-800 mb-6 italic text-left text-left"></h4>
+                <p class="text-[10px] text-slate-400 font-black uppercase mb-4 tracking-widest text-left text-left">志願序前五名摘要：</p>
+                <ul id="summary-list" class="space-y-3 font-bold text-slate-700 text-left italic text-left text-left text-left"></ul>
+                <button onclick="window.print()" class="mt-10 w-full py-4 bg-slate-900 text-white rounded-xl font-black text-sm shadow-xl no-print text-center text-center">🖨️ 列印/儲存存證單 (PDF)</button>
             </div>
-            <button onclick="app.logout()" class="mt-12 text-slate-400 font-black underline text-xs transition-colors text-center text-center text-center text-center text-center text-center text-center text-center text-center">安全登出系統</button>
+            <button onclick="app.logout()" class="mt-12 text-slate-400 font-black underline text-xs text-center">安全登出</button>
         </section>
 
-        <!-- 5. 管理員後台 -->
-        <section id="view-admin" class="hidden fade-in text-left text-left text-left">
+        <!-- 5. 管理控制台 -->
+        <section id="view-admin" class="hidden fade-in text-left">
             <div class="flex justify-between items-center mb-8 border-b-2 pb-6 text-left">
-                <h2 class="text-3xl font-black flex items-center gap-3 text-slate-800 italic underline decoration-blue-600 underline-offset-4 text-left">⚙️ 系統管理主控台</h2>
-                <button onclick="app.setView('gateway')" class="text-rose-500 font-black underline italic text-sm transition-colors text-left text-left">離開</button>
+                <h2 class="text-3xl font-black flex items-center gap-3 text-slate-800 italic underline decoration-blue-600 underline-offset-4 text-left text-left">⚙️ 管理主控台</h2>
+                <button onclick="app.setView('gateway')" class="text-rose-500 font-black underline italic text-sm transition-colors text-left text-left">離開後台</button>
             </div>
 
-            <div class="flex bg-slate-100 p-1.5 rounded-2xl mb-10 gap-2 max-w-xl shadow-inner border text-left">
-                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-blue-700 text-center">個資查詢</button>
-                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">智慧匯入</button>
-                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center">報表中心</button>
+            <div class="flex bg-slate-100 p-2 rounded-2xl mb-10 gap-3 max-w-xl shadow-inner border border-slate-300 text-left text-left text-left text-left">
+                <button onclick="admin.switchTab('lookup')" id="tab-lookup" class="flex-1 py-4 rounded-xl font-black text-xs transition bg-white shadow-md text-blue-700 text-center">個資查詢</button>
+                <button onclick="admin.switchTab('import')" id="tab-import" class="flex-1 py-4 rounded-xl font-black text-xs transition text-slate-500 text-center">智慧匯入</button>
+                <button onclick="admin.switchTab('report')" id="tab-report" class="flex-1 py-4 rounded-xl font-black text-xs transition text-slate-500 text-center">數據中心</button>
             </div>
 
             <div id="panel-lookup" class="space-y-6 text-left text-left text-left">
                 <div class="bg-white p-6 rounded-[2.5rem] shadow-xl border border-blue-50 flex items-center gap-4 text-left">
-                    <span class="text-2xl text-left">🔍</span>
-                    <input type="text" id="search-lookup" oninput="admin.renderLookup()" class="flex-grow p-2 outline-none font-bold text-lg text-slate-700" placeholder="搜尋姓名、學號或生日...">
+                    <span class="text-2xl text-left text-left text-left">🔍</span>
+                    <input type="text" id="search-lookup" oninput="admin.renderLookup()" class="flex-grow p-2 outline-none font-bold text-lg text-slate-700 text-left" placeholder="快速搜尋學號、姓名或生日...">
                 </div>
-                <div class="bg-white rounded-[2.5rem] border shadow-sm overflow-hidden text-left text-left text-left">
-                    <table class="w-full text-left text-left">
-                        <thead class="bg-slate-50 border-b text-[10px] font-black text-slate-400 tracking-widest text-left">
-                            <tr><th class="p-5 text-left">學號</th><th class="p-5 text-left">姓名</th><th class="p-5 text-left">年級</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left">末四碼</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left">生日</th></tr>
+                <div class="bg-white rounded-[2.5rem] border shadow-sm overflow-hidden text-left text-left text-left text-left text-left">
+                    <table class="w-full text-left text-left text-left text-left text-left text-left">
+                        <thead class="bg-slate-50 border-b text-[10px] font-black text-slate-400 tracking-widest text-left text-left text-left text-left text-left">
+                            <tr><th class="p-5 text-left text-left">學號</th><th class="p-5 text-left text-left">姓名</th><th class="p-5 text-left">年級</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left text-left text-left">末四碼</th><th class="p-5 text-blue-600 bg-blue-50/50 text-left text-left text-left text-left">生日</th></tr>
                         </thead>
-                        <tbody id="admin-lookup-body" class="divide-y text-sm font-medium italic text-left text-left text-left"></tbody>
+                        <tbody id="admin-lookup-body" class="divide-y text-sm font-medium italic text-left text-left text-left text-left text-left text-left text-left text-left"></tbody>
                     </table>
                 </div>
             </div>
 
-            <div id="panel-import" class="hidden space-y-8 text-left text-left text-left">
-                <div class="bg-white p-8 rounded-[3rem] border border-blue-100 shadow-xl text-left text-left text-left">
-                    <h3 class="font-black text-blue-700 text-xl italic mb-6 flex items-center gap-2 underline underline-offset-8 decoration-blue-200">📥 資料同步引擎 V31.5</h3>
-                    <div id="import-progress" class="hidden bg-emerald-50 text-emerald-600 px-6 py-3 rounded-full font-black text-sm mb-6 border border-emerald-100 animate-pulse text-left">同步進度：0%</div>
-                    
-                    <textarea id="import-area" class="w-full h-72 p-6 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-[2.5rem] outline-none shadow-inner border-4 border-slate-800 focus:border-blue-600 transition-all text-left text-left" placeholder="貼上 JSON 名單內容 [ { ... } ]"></textarea>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 text-left text-left">
-                        <button onclick="admin.setTarget('students')" id="target-students" class="p-4 rounded-2xl text-xs font-black bg-blue-600 text-white shadow-md transition-all text-left text-center">1. 同步全校學生庫</button>
-                        <div class="flex gap-2">
-                             <select id="import-grade" class="flex-grow p-4 bg-slate-50 border rounded-2xl font-black text-xs"><option value="1">國一</option><option value="2">國二</option><option value="3">國三</option></select>
-                             <button onclick="admin.setTarget('clubs')" id="target-clubs" class="px-6 rounded-2xl text-xs font-black bg-slate-100 text-slate-400 transition-all text-center">2. 更新社團</button>
+            <div id="panel-import" class="hidden space-y-8 text-left text-left text-left text-left">
+                <div class="bg-white p-10 rounded-[3rem] border border-blue-100 shadow-xl relative text-left text-left">
+                    <div class="flex justify-between items-center mb-8 text-left text-left text-left text-left text-left text-left">
+                        <h3 class="font-black text-blue-700 text-2xl italic flex items-center gap-2 underline underline-offset-8 decoration-blue-200">📥 資料同步引擎 V33</h3>
+                        <div id="import-progress" class="hidden bg-emerald-50 text-emerald-600 px-6 py-3 rounded-full font-black text-sm animate-pulse border border-emerald-100">處理進度：0%</div>
+                    </div>
+                    <textarea id="import-area" class="w-full h-80 p-8 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-[2.5rem] outline-none shadow-inner border-4 border-slate-800 focus:border-blue-600 transition-all text-left text-left text-left text-left text-left" placeholder="請直接在此貼上 JSON 內容..."></textarea>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 text-left text-left text-left text-left text-left text-left text-left">
+                        <button onclick="admin.setTarget('students')" id="target-students" class="p-5 rounded-2xl text-sm font-black bg-blue-600 text-white shadow-md transition-all text-center text-center text-center">1. 同步全校學生庫</button>
+                        <div class="flex gap-2 text-left text-left text-left text-left text-left text-left text-left">
+                             <select id="import-grade" class="flex-grow p-5 bg-slate-50 border-2 rounded-2xl font-black text-sm outline-none focus:border-blue-500 shadow-inner"><option value="1">國一</option><option value="2">國二</option><option value="3">國三</option></select>
+                             <button onclick="admin.setTarget('clubs')" id="target-clubs" class="px-8 rounded-2xl text-sm font-black bg-slate-100 text-slate-400 transition-all text-center text-center">2. 同步社團</button>
                         </div>
                     </div>
-                    <button id="import-btn" onclick="admin.doImport()" class="mt-8 w-full bg-slate-900 text-white font-black py-5 rounded-[2rem] shadow-2xl hover:bg-black transition flex items-center justify-center gap-2 text-xl text-center">開始同步至雲端系統</button>
+                    <button id="import-btn" onclick="admin.doImport()" class="mt-8 w-full bg-slate-900 text-white font-black py-6 rounded-3xl shadow-2xl hover:bg-black transition flex items-center justify-center gap-3 text-xl tracking-widest text-center text-center text-center text-center">正式開始雲端同步</button>
                 </div>
             </div>
 
-            <div id="panel-report" class="hidden text-center text-left text-left text-left text-left">
-                <div class="bg-white p-12 rounded-[4rem] border shadow-sm text-center">
-                    <h3 class="text-2xl font-black mb-10 text-center text-center">全校志願選填分發總表</h3>
-                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-12 py-5 rounded-[2rem] font-black shadow-2xl hover:bg-black transition-all text-xl text-center mx-auto block text-center">匯出 CSV (Excel 格式)</button>
-                    <div class="mt-10 text-xs text-slate-400 italic font-bold text-center text-center">雲端已收件：<span id="sub-count" class="text-blue-600 text-center">0</span> 筆</div>
+            <div id="panel-report" class="hidden text-center text-left text-left text-left text-left text-left text-left text-left text-left">
+                <div class="bg-white p-16 rounded-[4rem] border shadow-sm text-center text-center text-center">
+                    <h3 class="text-3xl font-black mb-10 text-center text-center text-center">分發數據總表匯出</h3>
+                    <button onclick="admin.exportCSV()" class="bg-slate-900 text-white px-12 py-5 rounded-3xl font-black shadow-2xl hover:bg-black transition-all text-xl text-center mx-auto block text-center text-center">匯出 CSV (Excel 格式) 檔案</button>
+                    <div class="mt-10 text-xs text-slate-400 italic font-bold text-center text-center text-center">雲端數據統計：<span id="sub-count" class="text-blue-600 text-center text-center">0</span> 筆</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 驗證密碼 Modal -->
-    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop text-left">
-        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-sm fade-in text-center text-left text-left text-left text-left text-left">
-            <h3 class="text-2xl font-black mb-6 text-slate-800 text-center">管理員身分驗證</h3>
-            <input type="password" id="admin-pwd-input" class="w-full p-4 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-8 shadow-inner text-slate-700 text-xl text-center" placeholder="請輸入密碼">
-            <div class="flex gap-4 text-center text-center text-center"><button onclick="app.closeAdminModal()" class="flex-1 py-4 text-slate-400 font-bold transition rounded-2xl text-center hover:bg-slate-100 text-center text-center text-center">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center active:scale-95 text-center text-center text-center">確認進入</button></div>
+    <!-- Modal: 密碼驗證 -->
+    <div id="admin-password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop text-left text-left text-left">
+        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-sm fade-in text-center text-left text-left text-left text-left text-left text-left text-left">
+            <h3 class="text-2xl font-black mb-6 text-slate-800 text-center text-center text-center">管理員身分驗證</h3>
+            <input type="password" id="admin-pwd-input" class="w-full p-5 bg-slate-50 border-2 rounded-2xl outline-none font-black text-center mb-8 shadow-inner text-slate-700 text-xl text-center text-center text-center text-center text-center" placeholder="輸入密碼">
+            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center"><button onclick="app.closeAdminModal()" class="flex-1 py-4 text-slate-400 font-bold transition rounded-2xl text-center hover:bg-slate-100 text-center text-center text-center text-center text-center">取消</button><button onclick="app.verifyAdmin()" class="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-bold shadow-lg text-center active:scale-95 text-center text-center text-center text-center text-center">確認進入</button></div>
         </div>
     </div>
 
-    <!-- 送出確認 Modal -->
-    <div id="modal-confirm" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-backdrop text-center text-left text-left text-left">
-        <div class="bg-white rounded-[4rem] shadow-2xl p-12 w-full max-w-md border-t-[12px] border-emerald-500 text-center text-left text-left">
-            <h3 class="text-3xl font-black mb-4 tracking-tight text-center text-slate-900 italic text-center">確定存檔？</h3>
-            <p class="text-red-600 font-black mb-12 text-sm leading-relaxed text-center text-left text-left">存檔後志願將正式封存。請再次確認排序正確無誤。</p>
-            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center text-center text-center text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-5 text-slate-400 font-bold border rounded-3xl text-center text-left hover:bg-slate-50 text-center">檢查</button><button onclick="app.savePrefs()" class="flex-1 py-5 bg-[#10b981] text-white rounded-3xl font-black shadow-xl text-center text-left active:scale-95 text-center">送出</button></div>
+    <!-- Modal: 送出確認 -->
+    <div id="modal-confirm" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-backdrop text-center text-left text-left text-left text-left text-left">
+        <div class="bg-white rounded-[4rem] shadow-2xl p-12 w-full max-w-md border-t-[12px] border-emerald-500 text-center text-left text-left text-left text-left text-left">
+            <h3 class="text-3xl font-black mb-4 tracking-tight text-center text-slate-900 italic text-center text-center text-center text-center">確定要存檔嗎？</h3>
+            <p class="text-red-600 font-black mb-12 text-sm leading-relaxed text-center text-left text-left text-left text-left text-left text-left">存檔後志願將正式鎖定於雲端。請再次確認排序正確無誤。</p>
+            <div class="flex gap-4 text-center text-center text-center text-center text-center text-center text-center text-center"><button onclick="app.hideConfirmModal()" class="flex-1 py-5 text-slate-400 font-bold border rounded-3xl text-center text-left hover:bg-slate-50 text-center text-center text-center">檢查</button><button onclick="app.savePrefs()" class="flex-1 py-5 bg-[#10b981] text-white rounded-3xl font-black shadow-xl text-center text-left active:scale-95 text-center text-center text-center">正式送出</button></div>
         </div>
     </div>
 
-    <div id="toast" class="fixed bottom-10 right-10 transform translate-y-20 opacity-0 transition-all z-[200] px-10 py-5 rounded-3xl shadow-2xl text-white font-black flex items-center gap-4 text-base text-center duration-500 text-center text-center text-center text-center"></div>
+    <div id="toast" class="fixed bottom-10 right-10 transform translate-y-20 opacity-0 transition-all z-[200] px-10 py-5 rounded-3xl shadow-2xl text-white font-black flex items-center gap-4 text-base text-center duration-500 text-center text-center text-center text-center text-center text-center text-center"></div>
 
+    <!-- 修正：確保 Firebase 資源連結正確，不再使用 Markdown 格式 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
@@ -205,7 +222,7 @@
             appId: "1:658160832309:web:afd49ad3ccb898494e467c",
             measurementId: "G-6SF75LGMKS"
         };
-        const appId = 'grjh-v31-5-final'; 
+        const appId = 'grjh-v32-final-relay'; 
         const ADMIN_PWD = 'admin123';
 
         const firebaseApp = initializeApp(firebaseConfig);
@@ -221,14 +238,21 @@
             init: () => {
                 onAuthStateChanged(auth, async (u) => {
                     if (u) { document.getElementById('view-loading').classList.add('hidden'); app.setView('gateway'); }
-                    else { try { await signInAnonymously(auth); } catch(e) {} }
+                    else { 
+                        try { await signInAnonymously(auth); } 
+                        catch(e) { ui.toast("無法連接伺服器", false); document.getElementById('view-loading').classList.add('hidden'); app.setView('gateway'); }
+                    }
                 });
                 lucide.createIcons();
             },
             setView: (v) => {
                 const ids = ['gateway', 'login', 'selection', 'summary', 'admin', 'loading'];
-                ids.forEach(id => document.getElementById('view-'+id).classList.add('hidden'));
-                document.getElementById('view-'+v).classList.remove('hidden');
+                ids.forEach(id => {
+                    const el = document.getElementById('view-'+id);
+                    if (el) el.classList.add('hidden');
+                });
+                const target = document.getElementById('view-'+v);
+                if (target) target.classList.remove('hidden');
                 window.scrollTo(0,0);
             },
             openAdminModal: () => document.getElementById('admin-password-modal').classList.remove('hidden'),
@@ -247,8 +271,8 @@
                     if (snap.exists() && snap.data().idLast4 === l4 && snap.data().birthday === bd) {
                         state.profile = snap.data();
                         app.loadSelection();
-                    } else ui.toast("登入憑證錯誤", false);
-                } catch(e) { ui.toast("連線超時", false); }
+                    } else ui.toast("帳號或密碼錯誤", false);
+                } catch(e) { ui.toast("網路超時", false); }
             },
             loadSelection: async () => {
                 const sid = state.profile.studentId;
@@ -259,7 +283,7 @@
 
                 document.getElementById('nav-user').innerText = `${state.profile.name} (${sid})`;
                 document.getElementById('nav-user').classList.remove('hidden');
-                document.getElementById('grade-label').innerText = `目前權限：國${grade} 學生專區`;
+                document.getElementById('grade-label').innerText = `權限確認：國${grade} 學生選填頁面`;
 
                 if (subSnap.exists()) {
                     state.preferences = subSnap.data().preferences;
@@ -273,11 +297,11 @@
             },
             renderSelectionUI: () => {
                 const container = document.getElementById('club-list'); container.innerHTML = '';
-                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-black text-slate-300 italic">尚未匯入社團清單</div>'; return; }
+                if(state.preferences.length === 0) { container.innerHTML = '<div class="p-20 text-center font-bold text-slate-300 italic">尚未匯入社團清單</div>'; return; }
                 state.preferences.forEach((c, i) => {
                     const d = document.createElement('div');
                     d.className = 'p-6 flex items-center gap-6 bg-white hover:bg-slate-50 transition-colors text-left';
-                    d.innerHTML = `<div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black text-center">${i+1}</div><div class="flex-grow text-left text-left"><h4 class="font-black text-xl text-slate-800 text-left text-left">${c.name}</h4><div class="flex gap-2 mt-1 text-left"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left">${c.category}</span></div></div><div class="flex gap-2 text-center text-center text-center"><button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center">⬆️</button><button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center text-center text-center">⬇️</button></div>`;
+                    d.innerHTML = `<div class="w-12 h-12 rounded-2xl ${i<3?'bg-blue-600 text-white font-black':'bg-slate-100 text-slate-400 font-bold'} flex items-center justify-center text-lg shadow-sm font-black text-center text-center text-center text-center">${i+1}</div><div class="flex-grow text-left text-left text-left text-left text-left text-left text-left text-left"><h4 class="font-black text-xl text-slate-800 text-left text-left text-left text-left text-left text-left text-left text-left">${c.name}</h4><div class="flex gap-2 mt-1 text-left text-left text-left text-left text-left text-left text-left"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left text-left text-left text-left">${c.category}</span></div></div><div class="flex gap-2 text-center text-center text-center text-center text-center text-center text-center text-center text-center"><button onclick="app.move(${i}, -1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center text-center text-center text-center text-center">⬆️</button><button onclick="app.move(${i}, 1)" class="w-11 h-11 border rounded-xl hover:bg-white flex items-center justify-center font-bold shadow-sm transition active:scale-90 text-xl text-center text-center text-center text-center text-center text-center">⬇️</button></div>`;
                     container.appendChild(d);
                 });
             },
@@ -291,11 +315,11 @@
                     const payload = { studentId: sid, name: state.profile.name, grade: state.profile.grade, preferences: state.preferences, timestamp: new Date().toISOString() };
                     await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'all_submissions', sid), payload);
                     ui.toast("存檔提交成功！"); app.renderSummary(payload); app.setView('summary');
-                } catch(e) { ui.toast("同步失敗", false); }
+                } catch(e) { ui.toast("連線失敗", false); }
             },
             renderSummary: (d) => {
-                document.getElementById('summary-name').innerText = `${d.name} 同學您好`;
-                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left text-left text-left"><span>志願 #${i+1}</span><span class="text-blue-700 font-black text-right text-right text-right text-right">${c.name}</span></li>`).join('');
+                document.getElementById('summary-name').innerText = `${d.name} 同學`;
+                document.getElementById('summary-list').innerHTML = d.preferences.slice(0, 5).map((c, i) => `<li class="flex justify-between py-2 border-b border-slate-50 italic text-left text-sm text-slate-600 font-bold text-left text-left text-left text-left text-left text-left"><span>志願 #${i+1}</span><span class="text-blue-700 font-black text-right text-right text-right text-right text-right text-right">${c.name}</span></li>`).join('');
             },
             logout: async () => { await signOut(auth); location.reload(); }
         };
@@ -303,8 +327,10 @@
         window.admin = {
             switchTab: (t) => {
                 ['lookup', 'import', 'report'].forEach(id => {
-                    document.getElementById('panel-'+id).classList.toggle('hidden', id !== t);
-                    document.getElementById('tab-'+id).className = id === t ? 'flex-1 py-3 rounded-xl font-black text-xs transition bg-white shadow-sm text-center text-blue-700' : 'flex-1 py-3 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50';
+                    const p = document.getElementById('panel-'+id);
+                    if (p) p.classList.toggle('hidden', id !== t);
+                    const b = document.getElementById('tab-'+id);
+                    if (b) b.className = id === t ? 'flex-1 py-4 rounded-xl font-black text-xs transition bg-white shadow-md text-blue-700 text-center' : 'flex-1 py-4 rounded-xl font-black text-xs transition text-slate-500 text-center hover:bg-slate-50';
                 });
                 if(t === 'report') admin.loadReports();
             },
@@ -316,46 +342,46 @@
             renderLookup: () => {
                 const q = document.getElementById('search-lookup').value.trim().toLowerCase();
                 const tbody = document.getElementById('admin-lookup-body');
-                const filtered = state.students.filter(s => s.studentId.includes(q) || s.name.includes(q) || s.birthday.includes(q));
-                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left text-left text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left text-left">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
+                const filtered = state.students.filter(s => s.studentId.includes(q) || s.name.includes(q));
+                tbody.innerHTML = filtered.map(s => `<tr><td class="p-5 font-mono text-xs text-slate-400 text-left text-left text-left text-left text-left text-left text-left">${s.studentId}</td><td class="p-5 font-black text-slate-800 text-left text-sm text-left text-left text-left text-left text-left text-left">${s.name}</td><td class="p-5 text-xs text-slate-400 text-left text-left text-left text-left text-left text-left">國${s.grade}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left text-left text-left text-left text-left">${s.idLast4}</td><td class="p-5 font-black text-blue-700 bg-blue-50/20 text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left">${s.birthday}</td></tr>`).join('');
             },
             setTarget: (t) => {
                 state.target = t;
-                document.getElementById('target-students').className = t === 'students' ? 'p-4 rounded-2xl text-xs font-black bg-blue-600 text-white shadow-md' : 'p-4 rounded-2xl text-xs font-black bg-slate-100 text-slate-400';
-                document.getElementById('target-clubs').className = t === 'clubs' ? 'px-6 rounded-2xl text-xs font-black bg-blue-600 text-white shadow-md' : 'px-6 rounded-2xl text-xs font-black bg-slate-100 text-slate-400';
+                document.getElementById('target-students').className = t === 'students' ? 'p-5 rounded-2xl text-sm font-black bg-blue-600 text-white shadow-md transition-all text-center' : 'p-5 rounded-2xl text-sm font-black bg-slate-100 text-slate-400 transition-all text-center';
+                document.getElementById('target-clubs').className = t === 'clubs' ? 'px-8 rounded-2xl text-sm font-black bg-blue-600 text-white shadow-md transition-all text-center' : 'px-8 rounded-2xl text-sm font-black bg-slate-100 text-slate-400 transition-all text-center';
             },
             doImport: async () => {
                 const btn = document.getElementById('import-btn');
                 const progressDiv = document.getElementById('import-progress');
                 let raw = document.getElementById('import-area').value;
                 const match = raw.match(/\[[\s\S]*\]/); 
-                if (!match) return ui.toast("無法抓取 JSON [ ]", false);
+                if (!match) return ui.toast("無法抓取 JSON [ ] 格式", false);
                 
-                let clean = match[0].replace(/[\u200B-\u200D\uFEFF\u00A0]/g, "")
+                let clean = match[0].replace(/[\u200B-\u200D\uFEFF\u00A0]/g, "") 
                                    .replace(/[“”]/g, '"').replace(/[‘’]/g, "'")
                                    .replace(/，/g, ",").replace(/、/g, ",")
-                                   .replace(/,(\s*[\]}])/g, "$1");
+                                   .replace(/,(\s*[\]}])/g, "$1"); 
 
                 try {
                     const data = JSON.parse(clean);
                     btn.disabled = true; progressDiv.classList.remove('hidden');
                     if (state.target === 'students') {
-                        const batchLimit = 150;
+                        const batchLimit = 150; 
                         for (let i = 0; i < data.length; i += batchLimit) {
                             const batch = writeBatch(db);
                             const chunk = data.slice(i, i + batchLimit);
                             chunk.forEach(s => batch.set(doc(db, 'artifacts', appId, 'public', 'data', 'students', s.studentId), s));
                             await batch.commit();
-                            progressDiv.innerText = `進度：${Math.round(((i + chunk.length)/data.length)*100)}%`;
+                            progressDiv.innerText = `同步進度：${Math.round(((i + chunk.length)/data.length)*100)}%`;
                         }
-                        ui.toast(`同步 ${data.length} 位學生成功`); admin.loadData();
+                        ui.toast(`成功同步 ${data.length} 位學生`); admin.loadData();
                     } else {
                         const g = document.getElementById('import-grade').value;
                         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'clubList_' + g), { items: data });
-                        ui.toast(`國${g}社團更新完成`);
+                        ui.toast(`國${g}社團名單已更新`);
                     }
                     document.getElementById('import-area').value = '';
-                } catch(e) { ui.toast("解析失敗，請確認資料結構", false); }
+                } catch(e) { ui.toast("JSON 語法報錯，請檢查資料內容", false); }
                 finally { btn.disabled = false; progressDiv.classList.add('hidden'); }
             },
             loadReports: async () => {
@@ -368,7 +394,7 @@
                 let csv = "\uFEFF年級,學號,姓名,提交時間,第一志願\n";
                 state.submissions.forEach(r => { csv += `${r.grade},${r.studentId},${r.name},${r.timestamp},${r.preferences[0].name}\n`; });
                 const link = document.createElement("a"); link.href = encodeURI("data:text/csv;charset=utf-8," + csv);
-                link.download = `歸仁國中志願總表_${new Date().toLocaleDateString()}.csv`; link.click();
+                link.download = `選填總表_${new Date().toLocaleDateString()}.csv`; link.click();
             }
         };
 
